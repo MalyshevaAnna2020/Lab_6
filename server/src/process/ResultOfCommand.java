@@ -154,7 +154,7 @@ public class ResultOfCommand {
             List<String> sortedList = hashtable
                     .keySet()
                     .stream()
-                    .filter(s -> s.length() >= Integer.parseInt(command.getKey()))
+                    .filter(s -> s.length() > Integer.parseInt(command.getKey()))
                     .collect(Collectors.toList());
             for (String key : sortedList) subhashtable.put(key, subhashtable.get(key));
             return subhashtable;
@@ -195,8 +195,10 @@ public class ResultOfCommand {
     public Hashtable<String, SpaceMarine> update(Hashtable<String, SpaceMarine> hashtable, Command command){
         try {
             for (String key : hashtable.keySet()) {
-                if (hashtable.get(key).getId() == Integer.parseInt(command.getKey())) {
-                    hashtable.put(key, command.getSpaceMarine());
+                if (hashtable.get(key).getId() == Integer.parseInt(command.getKey().trim())) {
+                    SpaceMarine spaceMarine = command.getSpaceMarine();
+                    spaceMarine.setId(hashtable.get(key).getId());
+                    hashtable.put(key, spaceMarine);
                 }
             }
             return hashtable;
@@ -208,15 +210,17 @@ public class ResultOfCommand {
         try {
             int id = -1;
             for (String key : hashtable.keySet()) {
-                if (hashtable.get(key).getId() == Integer.parseInt(command.getKey())) {
-                    hashtable.put(key, command.getSpaceMarine());
+                if (hashtable.get(key).getId() == Integer.parseInt(command.getKey().trim())) {
+                    SpaceMarine spaceMarine = command.getSpaceMarine();
+                    spaceMarine.setId(hashtable.get(key).getId());
+                    hashtable.put(key, spaceMarine);
                     id = hashtable.get(key).getId();
                 }
             }
             if (id > -1) return "Элемент коллекции с Id " +
-                    Integer.parseInt(command.getKey()) +
+                    Integer.parseInt(command.getKey().trim()) +
                     " успешно обновлен!";
-            else return "Элемента с Id = " + Integer.parseInt(command.getKey() + " в коллекции нет!");
+            else return "Элемента с Id = " + Integer.parseInt(command.getKey().trim()) + " в коллекции нет!";
         }catch (NumberFormatException e){
             return "id представляет собой целое число";
         }

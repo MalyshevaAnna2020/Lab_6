@@ -62,8 +62,9 @@ public class Play {
                 mainHashtable.put(hashtable, message.toString());
                 break;
             case REMOVE_KEY:
-                if (hashtable.contains(command.getKey())) {
-                    hashtable.remove(command.getKey());
+                if (hashtable.containsKey(command.getKey())) {
+                    System.out.println(command.getKey().trim());
+                    hashtable.remove(command.getKey().trim());
                     message.append("Элемент с ключом \"").append(command.getKey()).append("\" удален!");
                 }else{
                     message.append("Элемент с ключом \"").append(command.getKey()).append("\" не найден!");
@@ -120,7 +121,9 @@ public class Play {
                 mainHashtable.put(hashtable, message.toString());
                 break;
             case INSERT:
-                hashtable.put(command.getKey(), command.getSpaceMarine());
+                SpaceMarine spaceMarine = command.getSpaceMarine();
+                spaceMarine.setId(hashtable.size() + 1);
+                hashtable.put(command.getKey(), spaceMarine);
                 message.append(resultOfCommand.insert(command));
                 mainHashtable.put(hashtable, message.toString());
                 break;

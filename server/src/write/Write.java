@@ -86,7 +86,7 @@ public class Write {
                 } else {
                     buffer.clear();
                 }
-                System.out.println("Команда передана серверу!");
+                System.out.println("Команда передана клиенту!");
                 key.interestOps(SelectionKey.OP_READ);
                 Read read = new Read(key, selector);
                 read.readCommand(hashtable, file);

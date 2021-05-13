@@ -15,10 +15,4 @@ public class CheckFile {
             throw new FileNotWrite();
 
     }
-    public void checkFileRead (File file) throws FileNotFoundException, FileNotRead {
-        if (!file.exists()) throw new FileNotFoundException();
-        if (!file.canRead()) throw new FileNotRead();
-    }
-
-
 }

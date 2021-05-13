@@ -18,11 +18,10 @@ public class Console {
             if (s.length() > 2) {
                 s = s.substring(s.indexOf("\n") + 1);
             }else{break;}
-            
             int equals = line.indexOf("/>");
             if (equals > -1) {
                 SpaceMarine spaceMarine = new SpaceMarine();
-                spaceMarine.setSpaceMarine(line, hashtable.size() + 1);
+                spaceMarine.setSpaceMarine(line, subhashtable.size() + 1);
                 String key = line.substring(line.indexOf("<") + 1, 
                         line.substring(line.indexOf("<")).indexOf(" ") + line.indexOf("<") + 1).trim();
                 if (key.equals("")){
